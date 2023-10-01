@@ -1,15 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!----======== CSS ======== -->
+    <link rel="icon" type="image/png" href="logo.png">
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
     
-    <!----===== Boxicons CSS ===== -->
+    <!-- Boxicons CSS -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     
     <title>Power Manager</title> 
@@ -33,13 +32,12 @@
 
         <div class="menu-bar">
             <div class="menu">
-
-                <li class="search-box">
-                    <i class='bx bx-search icon'></i>
-                    <input type="text" placeholder="Search...">
-                </li>
-
                 <ul class="menu-links">
+                    <li class="search-box">
+                        <i class='bx bx-search icon'></i>
+                        <input type="text" placeholder="Search...">
+                    </li>
+
                     <li class="nav-link">
                         <a href="./index.html">
                             <i class='bx bx-home-alt icon' ></i>
@@ -74,56 +72,51 @@
                             <span class="text nav-text">Logs</span>
                         </a>
                     </li>
-
                 </ul>
             </div>
 
             <div class="bottom-content">
-                <li class="">
-                    <a href="#">
-                        <i class='bx bx-log-out icon' ></i>
-                        <span class="text nav-text">Logout</span>
-                    </a>
-                </li>
+                <ul>
+                    <li class="">
+                        <a href="#">
+                            <i class='bx bx-log-out icon' ></i>
+                            <span class="text nav-text">Logout</span>
+                        </a>
+                    </li>
 
-                <li class="mode">
-                    <div class="sun-moon">
-                        <i class='bx bx-moon icon moon'></i>
-                        <i class='bx bx-sun icon sun'></i>
-                    </div>
-                    <span class="mode-text text">Dark mode</span>
+                    <li class="mode">
+                        <div class="sun-moon">
+                            <i class='bx bx-moon icon moon'></i>
+                            <i class='bx bx-sun icon sun'></i>
+                        </div>
+                        <span class="mode-text text">Dark mode</span>
 
-                    <div class="toggle-switch">
-                        <span class="switch"></span>
-                    </div>
-                </li>
-                
+                        <div class="toggle-switch">
+                            <span class="switch"></span>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
-
     </nav>
 
     <section class="home">
         <div class="text">Notifications</div>
 
-        <!-- notificaions section -->
+        <!-- notifications section -->
         <section class="notifications">
-            <div class="text">Notifications</div>
-            
             <div class="notification-form">
-                <label for="power-limit">Set Power Limit:</label>
+                <label for="power-limit" class="text">Set Power Limit:</label>
                 <input type="number" id="power-limit" placeholder="Enter Power Limit">
                 <button id="set-power-limit-btn">Set Limit</button>
             </div>
-            
-            <div class="notification-list">
-                <!-- Notifications will be displayed here dynamically -->
-            </div>
         </section>
+        <div class="notification-list">
+            <!-- Notifications will be displayed here dynamically -->
+        </div>
     </section>
     
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="script.js"></script>
-
 </body>
 </html>
