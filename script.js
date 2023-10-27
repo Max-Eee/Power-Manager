@@ -1,26 +1,26 @@
 const body = document.querySelector('body'),
-      sidebar = body.querySelector('nav'),
-      toggle = body.querySelector(".toggle"),
-      searchBtn = body.querySelector(".search-box"),
-      modeSwitch = body.querySelector(".toggle-switch"),
-      modeText = body.querySelector(".mode-text");
+  sidebar = body.querySelector('nav'),
+  toggle = body.querySelector(".toggle"),
+  searchBtn = body.querySelector(".search-box"),
+  modeSwitch = body.querySelector(".toggle-switch"),
+  modeText = body.querySelector(".mode-text");
 
-toggle.addEventListener("click" , () =>{
-    sidebar.classList.toggle("close");
+toggle.addEventListener("click", () => {
+  sidebar.classList.toggle("close");
 });
 
-searchBtn.addEventListener("click" , () =>{
-    sidebar.classList.remove("close");
+searchBtn.addEventListener("click", () => {
+  sidebar.classList.remove("close");
 });
 
-modeSwitch.addEventListener("click" , () =>{
-    body.classList.toggle("dark");
-    
-    if(body.classList.contains("dark")){
-        modeText.innerText = "Light mode";
-    } else {
-        modeText.innerText = "Dark mode";   
-    }
+modeSwitch.addEventListener("click", () => {
+  body.classList.toggle("dark");
+
+  if (body.classList.contains("dark")) {
+    modeText.innerText = "Light mode";
+  } else {
+    modeText.innerText = "Dark mode";
+  }
 });
 
 const SPREADSHEET_ID = '1JSZRxZfTIey05yMfAZn8DOh1FbsgvobLJo3L0Xm-G40';
@@ -38,6 +38,8 @@ function initClient() {
     fetchAllData();
     // Fetch latest values for the cards
     fetchLatestValues();
+    // Fetch power limit from "Settings" tab
+    fetchPowerLimit();
     // Fetch data periodically (adjust the interval as needed)
     setInterval(fetchLatestValues, 5000); // Fetch latest values every 5 seconds
   });
@@ -64,6 +66,9 @@ function fetchLatestValues() {
 
     // Update the card values with the latest values
     updateCardValues(values);
+    
+    // Check if the power limit is exceeded and show a notification
+    checkPowerLimit();
   });
 }
 
@@ -90,7 +95,7 @@ function updateTable(data) {
   }
 }
 
-//--Cards Data Fetching--
+// --Cards Data Fetching--
 const voltageValue = document.getElementById('voltage-value');
 const currentValue = document.getElementById('current-value');
 const powerValue = document.getElementById('power-value');
@@ -112,55 +117,83 @@ function updateCardValues(data) {
   unitValue.textContent = latestRow[COLUMN_INDEX_FOR_UNIT];
 }
 
-//--Notifications--
-
-document.addEventListener('DOMContentLoaded', function () {
-  const notificationsTabLink = document.getElementById('notifications-tab-link');
-  const notificationsSection = document.querySelector('.notifications');
-  const setPowerLimitBtn = document.getElementById('set-power-limit-btn');
-  const powerLimitInput = document.getElementById('power-limit');
-  const notificationList = document.querySelector('.notification-list');
-
-  // Define the data variable
-  let data = [];
-
-  // Event listener to show/hide the Notifications tab
-  notificationsTabLink.addEventListener('click', () => {
-      notificationsSection.style.display = 'flex';
-      // Other sections can be hidden if needed
-      // Hide other sections: document.querySelector('.home').style.display = 'none';
+// Function to fetch the power limit from the "Settings" tab
+function fetchPowerLimit() {
+  gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: SPREADSHEET_ID,
+    range: 'Settings!A1', // Assuming A1 cell in "Settings" tab contains the power limit
+  }).then(response => {
+    const powerLimit = response.result.values[0][0];
+    if (powerLimit) {
+      // Set the retrieved power limit in the input field
+      document.getElementById('power-limit').value = powerLimit;
+    }
   });
+}
 
-  // Event listener to set power limit and check for notifications
-  setPowerLimitBtn.addEventListener('click', () => {
-      const powerLimit = parseInt(powerLimitInput.value);
-
-      // Assuming you have a function to check if the power limit is exceeded
-      if (checkPowerLimitExceeded(powerLimit, data)) {
-          // Display notification
-          displayNotification(`Power limit exceeded: ${powerLimit} W`);
-      }
-  });
-
-  // Function to check if the power limit is exceeded
-  function checkPowerLimitExceeded(limit, data) {
-    // Assuming the last row of your data contains the latest values
-    const latestRow = data[data.length - 1];
-
-    // Get the actual power consumption from the 4th column (index 3)
-    const actualPowerConsumption = parseInt(latestRow[3]);
-
-    return actualPowerConsumption > limit;
+// Function to set the power limit to the "Settings" tab
+function setPowerLimit() {
+  const userPowerLimit = document.getElementById('power-limit').value;
+  if (!isNaN(userPowerLimit)) {
+    gapi.client.sheets.spreadsheets.values.update({
+      spreadsheetId: SPREADSHEET_ID,
+      range: 'Settings!A1',
+      valueInputOption: 'RAW',
+      values: [[userPowerLimit]],
+    }).then(() => {
+      alert('Power limit set successfully!');
+    }).catch(error => {
+      console.error('Update error:', error);
+    });
+  } else {
+    alert('Invalid input. Please enter a valid number.');
   }
+}
 
-  // Function to display a notification
-  function displayNotification(message) {
-      const notification = document.createElement('div');
-      notification.classList.add('notification');
-      notification.textContent = message;
 
-      // Add the new notification to the list
-      notificationList.appendChild(notification);
+
+
+
+// Fetch the power limit from "Settings" tab when the page loads
+fetchPowerLimit();
+
+// Set Power Limit button event
+const setPowerLimitBtn = document.getElementById('set-power-limit-btn');
+setPowerLimitBtn.addEventListener('click', setPowerLimit);
+
+// Check if the power limit is exceeded and show a notification
+function checkPowerLimit() {
+  const powerLimit = parseFloat(document.getElementById('power-limit').value);
+  const latestPowerValue = parseFloat(powerValue.textContent);
+
+  if (!isNaN(powerLimit) && !isNaN(latestPowerValue) && latestPowerValue > powerLimit) {
+    // Power limit exceeded, show a notification
+    const notificationList = document.getElementById('notification-list');
+    const notification = document.createElement('div');
+    notification.classList.add('notification');
+    notification.textContent = `Power limit exceeded: ${latestPowerValue}`;
+    notificationList.appendChild(notification);
   }
-});
+}
 
+// Update Sheet ID
+document.getElementById('update-sheet-btn').addEventListener('click', updateSheetId);
+
+function updateSheetId() {
+    const newSheetId = document.getElementById('sheet-id').value;
+
+    // Validate the new sheet ID (you can add more validation if needed)
+    if (newSheetId.trim() !== '') {
+        // Update the global variable SPREADSHEET_ID with the new sheet ID
+        SPREADSHEET_ID = newSheetId;
+        
+        // Fetch data with the updated sheet ID
+        fetchAllData();
+        fetchLatestValues();
+        fetchPowerLimit();
+
+        alert('Google Sheet ID updated successfully!');
+    } else {
+        alert('Please enter a valid Google Sheet ID.');
+    }
+}
