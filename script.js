@@ -23,8 +23,8 @@ modeSwitch.addEventListener("click", () => {
   }
 });
 
-const SPREADSHEET_ID = '1JSZRxZfTIey05yMfAZn8DOh1FbsgvobLJo3L0Xm-G40';
-const API_KEY = 'AIzaSyAAesZDPdPRSYU4tX9v9b5JAcuMSZWNdyI';
+const SPREADSHEET_ID = '1YCVll5WrsZejK4qBBCDs-ReGvXDokubBp-wQypLXf5M';
+const API_KEY = 'AIzaSyBhUyVVkKx5MyPvkbGVEzb0v4E9IeVRK4U';
 
 // Load the Google Sheets API
 gapi.load('client', initClient);
