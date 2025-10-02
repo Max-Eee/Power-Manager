@@ -18,16 +18,17 @@ Monitor and manage your power consumption directly in your browser with real-tim
 
 ### Dashboard Overview
 **Main Dashboard**
-![PowerSwitch Dashboard](https://via.placeholder.com/800x400/1f2937/ffffff?text=PowerSwitch+Dashboard)
+<img width="2317" height="1181" alt="image" src="https://github.com/user-attachments/assets/d350058e-03fd-4c28-9ff9-477783701264" />
 
 **Analytics View**
-![Power Analytics](https://via.placeholder.com/800x400/0f172a/ffffff?text=Power+Analytics)
+<img width="2254" height="1155" alt="image" src="https://github.com/user-attachments/assets/73181de8-9ee2-4484-bba5-57148961e37b" />
 
 ### Activity Logs
-![System Logs Interface](https://via.placeholder.com/800x400/374151/ffffff?text=System+Logs)
+<img width="2222" height="1000" alt="image" src="https://github.com/user-attachments/assets/386359d8-278f-414c-a717-2f12d5e0deda" />
 
 ### Notification System
-![Telegram Notifications](https://via.placeholder.com/800x400/1e293b/ffffff?text=Telegram+Notifications)
+<img width="2285" height="1075" alt="image" src="https://github.com/user-attachments/assets/c45657f3-95c8-4ad1-93a4-6a0d6519d83d" />
+
 
 ## ✨ Features
 
