@@ -4,9 +4,9 @@ A comprehensive **`power monitoring platform`** built with modern web technologi
 
 <samp>
 
-## 🌐 Live Application
+## 🌐 Live Demo Application
 
-**Access Now**: [**Power-Manager**](https://max-eee.github.io/Power-Manager/) <br>
+**Access Now**: [**Power-Manager**](https://power-manager-six.vercel.app) <br>
 Monitor and manage your power consumption directly in your browser with real-time data integration.
   
 > [!IMPORTANT]
