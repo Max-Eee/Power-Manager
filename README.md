@@ -1,39 +1,65 @@
-# PowerSwitch - Power Management System
+# <i>**`Power-Manager`** - Web Application for Power Management</i>
 
-A modern, production-ready power monitoring and management system built with Next.js, Supabase, and Telegram Bot integration. Track power consumption, monitor outages, and receive real-time notifications.
+A comprehensive **`power monitoring platform`** built with modern web technologies for tracking electricity consumption, managing bills, analytics, and power-related notifications.
+
+<samp>
+
+## 🌐 Live Application
+
+**Access Now**: [**Power-Manager**](https://max-eee.github.io/Power-Manager/) <br>
+Monitor and manage your power consumption directly in your browser with real-time data integration.
+  
+> [!IMPORTANT]
+> **Next.js Integration**: This application uses Next.js 15 with Supabase for real-time data handling and storage.
+> 
+> **Smart Notifications**: Set up power limit alerts via Telegram bot to stay informed about consumption thresholds and take timely action.
+
+## 🎴 Design
+
+### Dashboard Overview
+**Main Dashboard**
+![PowerSwitch Dashboard](https://via.placeholder.com/800x400/1f2937/ffffff?text=PowerSwitch+Dashboard)
+
+**Analytics View**
+![Power Analytics](https://via.placeholder.com/800x400/0f172a/ffffff?text=Power+Analytics)
+
+### Activity Logs
+![System Logs Interface](https://via.placeholder.com/800x400/374151/ffffff?text=System+Logs)
+
+### Notification System
+![Telegram Notifications](https://via.placeholder.com/800x400/1e293b/ffffff?text=Telegram+Notifications)
 
 ## ✨ Features
 
-- 📊 **Real-time Dashboard** - Live power status and consumption tracking
-- ⚡ **Power Status Monitoring** - Track power ON/OFF states with duration
-- 📈 **Consumption Analytics** - Visual charts and detailed consumption data
-- 🔔 **Smart Notifications** - Real-time alerts via Telegram bot
-- 📝 **System Logs** - Comprehensive activity tracking
-- 📱 **Responsive Design** - Modern UI built with Shadcn/UI components
-- 🔒 **Production Ready** - Secure database with Row Level Security
+- **`Comprehensive Dashboard`** : Real-time overview of power consumption with visual analytics and key metrics
+- **`Next.js Framework`** : Modern React-based application with server-side rendering and API routes
+- **`Supabase Integration`** : Real-time database with PostgreSQL and Row Level Security for data management
+- **`Power Analytics`** : Advanced charting and statistical analysis of consumption patterns and trends
+- **`Bill Management`** : Track and manage electricity bills with detailed breakdown and cost analysis
+- **`Smart Notifications`** : Telegram bot integration for power limit alerts and consumption milestones
+- **`Activity Logging`** : Comprehensive logging system for all power-related events and activities
+- **`Real-time Monitoring`** : Live updates and monitoring of power consumption and system status
+- **`Data Visualization`** : Interactive charts powered by Recharts for better understanding of usage patterns
+- **`Responsive Design`** : Optimized for desktop, tablet, and mobile devices with Shadcn/UI components
+- **`TypeScript Support`** : Full type safety and enhanced developer experience
+- **`Production Ready`** : Built with modern best practices and security considerations
 
-## 🚀 Tech Stack
+## � Technical Stack
 
-- **Framework**: Next.js 15 with App Router
-- **Database**: Supabase (PostgreSQL)
-- **Styling**: Tailwind CSS + Shadcn/UI
-- **Notifications**: Telegram Bot API
-- **Charts**: Recharts
-- **Icons**: Lucide React
-- **Type Safety**: TypeScript
-
-## 📋 Prerequisites
-
-- Node.js 18+ and npm
-- Supabase account
-- Telegram Bot Token (optional but recommended)
+- **Frontend**: Next.js 15, React 18, TypeScript
+- **Database**: Supabase (PostgreSQL) with real-time subscriptions
+- **Styling**: Tailwind CSS with Shadcn/UI component library
+- **Charts**: Recharts for interactive data visualization
+- **Notifications**: Telegram Bot API integration
+- **Icons**: Lucide React icon library
+- **Development**: Turbopack, ESLint, Hot reload
 
 ## 🛠️ Installation
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd powerswitch
+   git clone https://github.com/Max-Eee/Power-Manager.git
+   cd Power-Manager
    ```
 
 2. **Install dependencies**
@@ -151,21 +177,6 @@ A modern, production-ready power monitoring and management system built with Nex
 - `weekly_report` - Weekly consumption report
 - `maintenance_alert` - System maintenance alerts
 
-### Database Policies
-The application uses Supabase Row Level Security (RLS) to ensure data security:
-- Users can only access their own data
-- Public read access for power status and consumption
-- Authenticated write access for data entry
-
-## 📊 API Endpoints
-
-### Dashboard API
-- `GET /api/dashboard` - Get dashboard data
-- `POST /api/dashboard` - Update power status or add consumption
-
-### Notifications API
-- `POST /api/notifications/telegram` - Send Telegram notification
-
 ## 🚢 Deployment
 
 ### Vercel (Recommended)
@@ -178,46 +189,3 @@ The application uses Supabase Row Level Security (RLS) to ensure data security:
 1. Build the application: `npm run build`
 2. Deploy the `.next` folder to your hosting provider
 3. Ensure environment variables are set
-
-## 🔐 Security Features
-
-- Row Level Security (RLS) enabled
-- Environment variables for sensitive data
-- Input validation and sanitization
-- Secure API endpoints
-- HTTPS enforcement in production
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
-## 🆘 Support
-
-If you encounter any issues:
-
-1. Check the console for error messages
-2. Verify environment variables are set correctly
-3. Ensure Supabase database is set up properly
-4. Test Telegram bot configuration
-5. Open an issue on GitHub
-
-## 🔄 Version History
-
-- **v1.0.0** - Initial release with core features
-- Real-time dashboard
-- Power status tracking
-- Consumption monitoring
-- Telegram notifications
-- System logging
-
----
-
-**PowerSwitch** - Making power monitoring simple and intelligent. 🔌⚡
