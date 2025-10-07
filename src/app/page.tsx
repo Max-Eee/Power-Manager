@@ -158,26 +158,26 @@ export default function Home() {
   }
 
   return (
-    <div className="container mx-auto p-6 space-y-8">
+    <div className="container mx-auto p-4 sm:p-6 space-y-6 sm:space-y-8">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight flex items-center gap-3">
-            <Power className="h-8 w-8 text-primary" />
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight flex items-center gap-2 sm:gap-3">
+            <Power className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
             PowerSwitch
           </h1>
-          <p className="text-muted-foreground mt-1">
+          <p className="text-sm sm:text-base text-muted-foreground mt-1">
             Power Management & Monitoring System
           </p>
         </div>
         
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           {currentPowerStatus && (
             <Badge 
               variant={currentPowerStatus.status === 'ON' ? 'default' : 'destructive'}
-              className="text-sm font-semibold px-3 py-1"
+              className="text-xs sm:text-sm font-semibold px-2 sm:px-3 py-1"
             >
-              <div className={`w-2 h-2 rounded-full mr-2 ${
+              <div className={`w-2 h-2 rounded-full mr-1 sm:mr-2 ${
                 currentPowerStatus.status === 'ON' 
                   ? 'bg-green-500 animate-pulse' 
                   : 'bg-red-500'
@@ -187,8 +187,8 @@ export default function Home() {
           )}
           
           <Button variant="outline" size="sm">
-            <Settings className="h-4 w-4 mr-2" />
-            Settings
+            <Settings className="h-4 w-4 sm:mr-2" />
+            <span className="hidden sm:inline">Settings</span>
           </Button>
         </div>
       </div>
@@ -197,28 +197,30 @@ export default function Home() {
 
       {/* Main Content */}
       <Tabs defaultValue="dashboard" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-5">
-          <TabsTrigger value="dashboard" className="flex items-center gap-2">
-            <BarChart3 className="h-4 w-4" />
-            Dashboard
-          </TabsTrigger>
-          <TabsTrigger value="power" className="flex items-center gap-2">
-            <Power className="h-4 w-4" />
-            Power Status
-          </TabsTrigger>
-          <TabsTrigger value="consumption" className="flex items-center gap-2">
-            <Zap className="h-4 w-4" />
-            Consumption
-          </TabsTrigger>
-          <TabsTrigger value="notifications" className="flex items-center gap-2">
-            <Bell className="h-4 w-4" />
-            Notifications
-          </TabsTrigger>
-          <TabsTrigger value="logs" className="flex items-center gap-2">
-            <Clock className="h-4 w-4" />
-            Logs
-          </TabsTrigger>
-        </TabsList>
+        <div className="w-full overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+          <TabsList className="grid w-full min-w-max grid-cols-5 md:w-full md:min-w-0">
+            <TabsTrigger value="dashboard" className="flex items-center gap-2">
+              <BarChart3 className="h-4 w-4 flex-shrink-0" />
+              <span className="hidden sm:inline">Dashboard</span>
+            </TabsTrigger>
+            <TabsTrigger value="power" className="flex items-center gap-2">
+              <Power className="h-4 w-4 flex-shrink-0" />
+              <span className="hidden sm:inline">Power Status</span>
+            </TabsTrigger>
+            <TabsTrigger value="consumption" className="flex items-center gap-2">
+              <Zap className="h-4 w-4 flex-shrink-0" />
+              <span className="hidden sm:inline">Consumption</span>
+            </TabsTrigger>
+            <TabsTrigger value="notifications" className="flex items-center gap-2">
+              <Bell className="h-4 w-4 flex-shrink-0" />
+              <span className="hidden sm:inline">Notifications</span>
+            </TabsTrigger>
+            <TabsTrigger value="logs" className="flex items-center gap-2">
+              <Clock className="h-4 w-4 flex-shrink-0" />
+              <span className="hidden sm:inline">Logs</span>
+            </TabsTrigger>
+          </TabsList>
+        </div>
 
         <TabsContent value="dashboard" className="space-y-6">
           <Dashboard 
